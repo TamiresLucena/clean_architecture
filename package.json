@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "lint": "eslint \"src/**\" --fix",
-    "alo": "jest --init"
+    "lint": "eslint \"src/**\" --fix"
   },
   "repository": {
     "type": "git",
