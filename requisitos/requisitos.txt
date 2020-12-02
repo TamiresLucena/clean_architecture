@@ -1,0 +1,4 @@
+API Requisitos
+
+1. Registrar usuário na lista de email
+2. Enviar o email com o pôster 
