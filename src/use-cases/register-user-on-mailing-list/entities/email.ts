@@ -15,6 +15,9 @@ export class Email {
       return false
     }
 
+    const domainParts = domain.split('.')
+    if (domainParts.some((part) => { return part.length > 63 })) return false
+
     return true
   }
 }
