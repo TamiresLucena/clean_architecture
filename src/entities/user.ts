@@ -1,20 +1,33 @@
 import { UserData } from './user-data'
-import { Either, left } from '../shared/either'
+import { Either, left, right } from '../shared/either'
 import { InvalidEmailError } from './errors/invalid-email-error'
 import { InvalidNameError } from './errors/invalid-name-error'
 import { Email } from './email'
 import { Name } from './name'
 
 export class User {
-  static create (userData: UserData): Either<InvalidNameError | InvalidEmailError, User> {
-    const nameOrError = Name.create(userData.name)
-    if (nameOrError.isLeft()) {
-      return left(new InvalidNameError())
+    public readonly name: Name
+    public readonly email: Email
+
+    private constructor (name: Name, email: Email) {
+      this.name = name
+      this.email = email
     }
 
-    const emailOrError = Email.create(userData.email)
-    if (emailOrError.isLeft()) {
-      return left(new InvalidEmailError())
+    static create (userData: UserData): Either<InvalidNameError | InvalidEmailError, User> {
+      const nameOrError = Name.create(userData.name)
+      if (nameOrError.isLeft()) {
+        return left(new InvalidNameError())
+      }
+
+      const emailOrError = Email.create(userData.email)
+      if (emailOrError.isLeft()) {
+        return left(new InvalidEmailError())
+      }
+
+      const name: Name = nameOrError.value as Name
+      const email: Email = emailOrError.value as Email
+
+      return right(new User(name, email))
     }
-  }
 }
