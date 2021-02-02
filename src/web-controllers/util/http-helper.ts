@@ -5,3 +5,9 @@ export const created = (data: any): HttpResponse => ({
   body: data
 
 })
+
+export const badRequest = (data: any): HttpResponse => ({
+  statusCode: 400,
+  body: data
+
+})
