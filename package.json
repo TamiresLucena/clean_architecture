@@ -9,6 +9,7 @@
     }
   },
   "scripts": {
+    "build": "rimraf dist && tsc -p tsconfig-build.json",
     "lint": "eslint \"src/**\" --fix",
     "test": "jest --passWithNoTests --silent --noStackTrace --runInBand",
     "test-verbose": "jest --passWithNoTests --runInBand",
@@ -56,5 +57,8 @@
     "module-alias": "^2.2.2",
     "mongodb": "^3.6.4",
     "mongodb-memory-server": "^6.9.3"
+  },
+  "_moduleAliases": {
+    "@": "dist"
   }
 }
