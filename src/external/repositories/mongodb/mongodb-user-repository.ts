@@ -17,7 +17,8 @@ export class MongodbUserRepository implements UserRepository {
     return result
   }
 
-  findAllUsers (): Promise<UserData[]> {
+  async findAllUsers (): Promise<UserData[]> {
+    // return await MongoHelper.getCollection('users').find().toArray()
     throw new Error('Method not implemented.')
   }
 
